@@ -1,0 +1,6 @@
+# Stage1: UI Build
+FROM node:14-slim
+WORKDIR /usr/src/ui
+COPY ui/ .
+RUN npm install
+CMD ["npm", "start"]
