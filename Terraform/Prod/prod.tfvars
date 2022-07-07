@@ -21,7 +21,7 @@ variable "item_count" {
 variable "vpc_cidr" {
   description = "default vpc cidr block"
   type        = string
-  default     = "11.0.0.0/16"
+  default     = "12.0.0.0/16"
 }
 
 variable "availability_zone_names" {
@@ -31,17 +31,17 @@ variable "availability_zone_names" {
 
 variable "web_subnet_cidr" {
   type    = list(string)
-  default = ["11.0.1.0/24", "11.0.2.0/24"]
+  default = ["12.0.1.0/24", "12.0.2.0/24"]
 }
 
 variable "application_subnet_cidr" {
   type    = list(string)
-  default = ["11.0.11.0/24", "11.0.12.0/24"]
+  default = ["12.0.11.0/24", "12.0.12.0/24"]
 }
 
 variable "database_subnet_cidr" {
   type    = list(string)
-  default = ["11.0.21.0/24", "11.0.22.0/24"]
+  default = ["12.0.21.0/24", "12.0.22.0/24"]
 }
 
 #ECS variables
@@ -50,14 +50,24 @@ variable "ecs_cluster_name" {
   default     = "Cluster"
 }
 
+variable "ecs_back_cluster_name" {
+  description = "ECS task execution role name"
+  default     = "Back_Cluster"
+}
+
 variable "ecs_task_execution_role_name" {
   description = "ECS task execution role name"
-  default     = "myEcsTaskExecutionRole"
+  default     = "prod_myEcsTaskExecutionRole"
 }
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "158997841917.dkr.ecr.us-east-1.amazonaws.com/dev-demo-repo"
+  default     = "xkingrd/ui-front:v11"
+}
+
+variable "back_image" {
+  description = "Docker image to run in the ECS cluster"
+  default     = "xkingrd/api-back:v10"
 }
 
 variable "lb_port" {
@@ -67,7 +77,7 @@ variable "lb_port" {
 
 variable "app_port" {
   description = "Port exposed by the docker image to redirect traffic to"
-  default     = 80
+  default     = 3000
 }
 
 variable "app_count" {
@@ -75,8 +85,12 @@ variable "app_count" {
   default     = 2
 }
 
-variable "health_check_path" {
+variable "front_health_check_path" {
   default = "/"
+}
+
+variable "back_health_check_path" {
+  default = "/todos"
 }
 
 variable "fargate_cpu" {
@@ -92,17 +106,17 @@ variable "fargate_memory" {
 #variable "container_environment" {
 #  type        = map(any)
 #  description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
-#  default = {
- #   mongodb = "172.16.13.255"
- # }
+#  default = {["mongodb = 132131", mongodb = ]
+#   mongodb = "172.16.13.255"
+# }
 #}
 
 #variable "container_secrets" {
- # type        = map(any)
- # description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
- # default = {
-  #  mongodb = "172.16.13.255"
-  #}
+# type        = map(any)
+# description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
+# default = {
+#  mongodb = "172.16.13.255"
+#}
 #}
 
 
@@ -115,7 +129,7 @@ variable "rds_instance" {
     engine_version      = "14.1"
     instance_class      = "db.t4g.micro"
     multi_az            = true
-    name                = "dev-mydb"
+    name                = "prod-mydb"
     skip_final_snapshot = true
     db_name             = "test_db"
   }
