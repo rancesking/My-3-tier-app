@@ -4,9 +4,9 @@ const pg = require('pg');
 
 const connect = () => {
 
-    const hostName = "localhost";
+    const hostName = "dev-mydb.c1q8ra0ipe54.us-east-1.rds.amazonaws.com";
     const userName = "test_user";
-    const password = "S3cret";
+    const password = "S3cret123";
     const database = "test_db";
     const dialect = "postgres";
 

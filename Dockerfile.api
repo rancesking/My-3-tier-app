@@ -3,5 +3,5 @@ FROM node:14-slim
 WORKDIR /usr/src/api
 COPY api/ .
 RUN npm install
-
+EXPOSE 3000
 CMD ["npm", "run", "dev"]

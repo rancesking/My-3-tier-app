@@ -85,7 +85,7 @@ resource "aws_nat_gateway" "main" {
   subnet_id     = aws_subnet.web-subnet[0].id
   depends_on    = [aws_internet_gateway.igw]
 }
- 
+
 resource "aws_eip" "nat" {
   vpc = true
 }
@@ -93,13 +93,13 @@ resource "aws_eip" "nat" {
 resource "aws_route_table" "priv-rt" {
   vpc_id = aws_vpc.main.id
 }
- 
+
 resource "aws_route" "private" {
   route_table_id         = aws_route_table.priv-rt.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.main.id
 }
- 
+
 resource "aws_route_table_association" "private" {
   count          = var.item_count
   subnet_id      = aws_subnet.application-subnet[count.index].id
@@ -116,6 +116,14 @@ resource "aws_security_group" "web-sg" {
     description = "HTTP from VPC"
     from_port   = var.lb_port
     to_port     = var.lb_port
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "3000 from VPC"
+    from_port   = var.app_port
+    to_port     = var.app_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -146,6 +154,14 @@ resource "aws_security_group" "webserver-sg" {
     security_groups = [aws_security_group.web-sg.id]
   }
 
+  ingress {
+    description = "3000 from VPC"
+    from_port   = var.app_port
+    to_port     = var.app_port
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -169,9 +185,16 @@ resource "aws_security_group" "database-sg" {
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    security_groups = [aws_security_group.webserver-sg.id,aws_security_group.web-sg.id]
+    security_groups = [aws_security_group.webserver-sg.id, aws_security_group.web-sg.id]
   }
 
+  ingress {
+    description = "5432 from VPC"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   egress {
     from_port   = 32768
     to_port     = 65535

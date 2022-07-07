@@ -10,7 +10,7 @@ resource "aws_lb" "main" {
 
 resource "aws_alb_target_group" "main" {
   name        = "${var.env}-ALB-TG"
-  port        = var.app_port
+  port        = var.lb_port
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id
   target_type = "ip"
@@ -18,22 +18,22 @@ resource "aws_alb_target_group" "main" {
   health_check {
     enabled             = true
     healthy_threshold   = "3"
-    interval            = "30"
+    interval            = "80"
     protocol            = "HTTP"
-    port                = "3000"
+    port                = "traffic-port"
     matcher             = "200,304"
-    timeout             = "15"
+    timeout             = "50"
     path                = var.front_health_check_path
     unhealthy_threshold = "2"
   }
   lifecycle {
-      create_before_destroy = true
-    }
+    create_before_destroy = true
+  }
 }
 
 resource "aws_alb_listener" "http" {
   load_balancer_arn = aws_lb.main.id
-  port              = var.app_port
+  port              = "80"
   protocol          = "HTTP"
 
   default_action {
@@ -45,10 +45,10 @@ resource "aws_alb_listener" "http" {
 #Create aplication subnet Load Balancer
 resource "aws_lb" "back" {
   name               = "${var.env}-Internal-LB"
-  internal           = true
+  internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.webserver-sg.id]
-  subnets            = [aws_subnet.application-subnet[0].id, aws_subnet.application-subnet[1].id]
+  subnets            = [aws_subnet.web-subnet[0].id, aws_subnet.web-subnet[1].id]
 }
 
 resource "aws_alb_target_group" "back" {
@@ -61,17 +61,17 @@ resource "aws_alb_target_group" "back" {
   health_check {
     enabled             = true
     healthy_threshold   = "3"
-    interval            = "30"
+    interval            = "80"
     protocol            = "HTTP"
-    port                = "3000"
+    port                = "traffic-port"
     matcher             = "200,304"
-    timeout             = "15"
+    timeout             = "50"
     path                = var.back_health_check_path
     unhealthy_threshold = "2"
   }
   lifecycle {
-      create_before_destroy = true
-    }
+    create_before_destroy = true
+  }
 }
 
 resource "aws_alb_listener" "httpback" {

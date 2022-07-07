@@ -62,12 +62,12 @@ variable "ecs_task_execution_role_name" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "xkingrd/ui-front"
+  default     = "xkingrd/ui-front:v11"
 }
 
 variable "back_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "xkingrd/api-back"
+  default     = "xkingrd/api-back:v10"
 }
 
 variable "lb_port" {
@@ -90,7 +90,7 @@ variable "front_health_check_path" {
 }
 
 variable "back_health_check_path" {
-  default = "/api/tasks"
+  default = "/todos"
 }
 
 variable "fargate_cpu" {
@@ -107,16 +107,16 @@ variable "fargate_memory" {
 #  type        = map(any)
 #  description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
 #  default = {["mongodb = 132131", mongodb = ]
- #   mongodb = "172.16.13.255"
- # }
+#   mongodb = "172.16.13.255"
+# }
 #}
 
 #variable "container_secrets" {
- # type        = map(any)
- # description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
- # default = {
-  #  mongodb = "172.16.13.255"
-  #}
+# type        = map(any)
+# description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
+# default = {
+#  mongodb = "172.16.13.255"
+#}
 #}
 
 

@@ -11,14 +11,14 @@ resource "aws_ecs_task_definition" "main" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   container_definitions = jsonencode([{
-    name        = "${var.env}-container"
-    image       = "${var.app_image}:latest"
-    essential   = true
+    name      = "${var.env}-container"
+    image     = "${var.app_image}"
+    essential = true
     #environment = var.container_environment
     portMappings = [{
       protocol      = "tcp"
-      containerPort = var.app_port
-      hostPort      = var.app_port
+      containerPort = var.lb_port
+      hostPort      = var.lb_port
     }]
     logConfiguration = {
       logDriver = "awslogs"
@@ -57,7 +57,7 @@ resource "aws_ecs_service" "main" {
   load_balancer {
     target_group_arn = aws_alb_target_group.main.id
     container_name   = "${var.env}-container"
-    container_port   = var.app_port
+    container_port   = var.lb_port
   }
 
   depends_on = [aws_alb_listener.http, aws_iam_role_policy_attachment.ecs_task_execution_role]
@@ -76,9 +76,9 @@ resource "aws_ecs_task_definition" "back" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   container_definitions = jsonencode([{
-    name        = "${var.env}-back-container"
-    image       = "${var.back_image}:latest"
-    essential   = true
+    name      = "${var.env}-back-container"
+    image     = "${var.back_image}"
+    essential = true
     #environment = var.container_environment
     portMappings = [{
       protocol      = "tcp"
