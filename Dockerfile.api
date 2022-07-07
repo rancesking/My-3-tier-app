@@ -1,7 +1,0 @@
-# Stage1: API Build
-FROM node:14-slim
-WORKDIR /usr/src/api
-COPY api/ .
-RUN npm install
-
-CMD ["npm", "run", "dev"]
