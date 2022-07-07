@@ -4,7 +4,7 @@ const pg = require('pg');
 
 const connect = () => {
 
-    const hostName = "172.16.0.2";
+    const hostName = "localhost";
     const userName = "test_user";
     const password = "S3cret";
     const database = "test_db";
