@@ -1,0 +1,28 @@
+name: ci-api
+
+on:
+  push:
+    branches:
+      - 'Dev'
+    paths:
+      - 'api/**'
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./api
+          push: true
+          tags: xkingrd/api-back
