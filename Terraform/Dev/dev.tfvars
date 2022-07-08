@@ -1,129 +1,50 @@
-variable "region" {
-  description = "Set the desired region of the infrastructure"
-  type        = string
-  default     = "us-east-1"
-}
+region = "us-east-1"
 
-variable "env" {
-  description = "Set the desired enviroment of the infrastructure"
-  type        = string
-  default     = "dev"
-}
+env = "dev"
 
-#Count variable
-variable "item_count" {
-  description = "default count used to set AZs and instances"
-  type        = number
-  default     = 2
-}
+item_count = 2
 
 #VPC variables
-variable "vpc_cidr" {
-  description = "default vpc cidr block"
-  type        = string
-  default     = "10.0.0.0/16"
-}
+vpc_cidr = "10.0.0.0/16"
 
-variable "availability_zone_names" {
-  type    = list(string)
-  default = ["us-east-1a", "us-east-1b"]
-}
+availability_zone_names = ["us-east-1a", "us-east-1b"]
 
-variable "web_subnet_cidr" {
-  type    = list(string)
-  default = ["10.0.1.0/24", "10.0.2.0/24"]
-}
+web_subnet_cidr = ["10.0.1.0/24", "10.0.2.0/24"]
 
-variable "application_subnet_cidr" {
-  type    = list(string)
-  default = ["10.0.11.0/24", "10.0.12.0/24"]
-}
+application_subnet_cidr = ["10.0.11.0/24", "10.0.12.0/24"]
 
-variable "database_subnet_cidr" {
-  type    = list(string)
-  default = ["10.0.21.0/24", "10.0.22.0/24"]
-}
+database_subnet_cidr = ["10.0.21.0/24", "10.0.22.0/24"]
 
 #ECS variables
-variable "ecs_cluster_name" {
-  description = "ECS task execution role name"
-  default     = "Cluster"
-}
+ecs_cluster_name = "Cluster"
 
-variable "ecs_back_cluster_name" {
-  description = "ECS task execution role name"
-  default     = "Back_Cluster"
-}
+ecs_back_cluster_name = "Back_Cluster"
 
-variable "ecs_task_execution_role_name" {
-  description = "ECS task execution role name"
-  default     = "dev_myEcsTaskExecutionRole"
-}
+ecs_task_execution_role_name = "dev_myEcsTaskExecutionRole"
 
-variable "app_image" {
-  description = "Docker image to run in the ECS cluster"
-  default     = "xkingrd/ui-front:v11"
-}
+app_image = "xkingrd/ui-front:v90"
 
-variable "back_image" {
-  description = "Docker image to run in the ECS cluster"
-  default     = "xkingrd/api-back:v10"
-}
+back_image = "xkingrd/api-back:v90"
 
-variable "lb_port" {
-  description = "Port exposed by the docker image to redirect traffic to"
-  default     = 80
-}
+lb_port = 80
 
-variable "app_port" {
-  description = "Port exposed by the docker image to redirect traffic to"
-  default     = 3000
-}
+app_port = 3000
 
-variable "app_count" {
-  description = "Number of docker containers to run"
-  default     = 2
-}
+app_count = 2
 
-variable "front_health_check_path" {
-  default = "/"
-}
+front_health_check_path = "/"
 
-variable "back_health_check_path" {
-  default = "/todos"
-}
+back_health_check_path = "/todos"
 
-variable "fargate_cpu" {
-  description = "Fargate instance CPU units to provision (1 vCPU = 1024 CPU units)"
-  default     = "256"
-}
+fargate_cpu = "256"
 
-variable "fargate_memory" {
-  description = "Fargate instance memory to provision (in MiB)"
-  default     = "512"
-}
+fargate_memory = "512"
 
-#variable "container_environment" {
-#  type        = map(any)
-#  description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
-#  default = {["mongodb = 132131", mongodb = ]
-#   mongodb = "172.16.13.255"
-# }
-#}
 
-#variable "container_secrets" {
-# type        = map(any)
-# description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
-# default = {
-#  mongodb = "172.16.13.255"
-#}
-#}
-
+#container_environment [mongodb = "132131"], 
 
 #Create database variables
-variable "rds_instance" {
-  type = map(any)
-  default = {
+rds_instance = {
     allocated_storage   = 5
     engine              = "postgres"
     engine_version      = "14.1"
@@ -133,14 +54,10 @@ variable "rds_instance" {
     skip_final_snapshot = true
     db_name             = "test_db"
   }
-}
 
 #Create database sensitive variables
-variable "user_information" {
-  type = map(any)
-  default = {
+/* user_information = {
     username = "test_user"
     password = "S3cret123"
   }
-  sensitive = true
-}
+ */
