@@ -43,7 +43,6 @@ fargate_memory = "512"
 
 #container_environment [mongodb = "132131"], 
 
-
 #Create database variables
 rds_instance = {
     allocated_storage   = 5
