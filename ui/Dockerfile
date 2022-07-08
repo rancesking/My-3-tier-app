@@ -1,7 +1,7 @@
 FROM node:14-slim AS ui-build
 WORKDIR /usr/src
 COPY . .
-RUN npm run build
+RUN npm install && npm run build
 
 # Stage2: Packagign the app
 FROM nginx:stable-alpine
