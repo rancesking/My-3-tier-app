@@ -22,9 +22,9 @@ ecs_back_cluster_name = "Back_Cluster"
 
 ecs_task_execution_role_name = "dev_myEcsTaskExecutionRole"
 
-app_image = "xkingrd/ui-front:v11"
+app_image = "xkingrd/ui-front:v90"
 
-back_image = "xkingrd/api-back:v10"
+back_image = "xkingrd/api-back:v90"
 
 lb_port = 80
 
@@ -40,19 +40,6 @@ fargate_cpu = "256"
 
 fargate_memory = "512"
 
-extra_hosts = [{
-  ipAddress = "${aws_lb.back.dns_name}"
-  hostname  = "api.server"
-  },
-  {
-  ipAddress = "${aws_db_instance.default.endpoint}"
-  hostname  = "db.server"
-  },
-  {
-  ipAddress = "${aws_lb.main.dns_name}"
-  hostname  = "front.server"
-  },
-]
 
 #container_environment [mongodb = "132131"], 
 
@@ -69,7 +56,8 @@ rds_instance = {
   }
 
 #Create database sensitive variables
-user_information = {
+/* user_information = {
     username = "test_user"
     password = "S3cret123"
   }
+ */

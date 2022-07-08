@@ -9,8 +9,8 @@ resource "aws_db_instance" "default" {
   multi_az               = var.rds_instance.multi_az
   db_name                = var.rds_instance.db_name
   identifier             = var.rds_instance.name
-  username               = var.user_information.username
-  password               = var.user_information.password
+  username               = var.db_user
+  password               = var.db_pass
   skip_final_snapshot    = var.rds_instance.skip_final_snapshot
   vpc_security_group_ids = [aws_security_group.database-sg.id]
   tags = {
