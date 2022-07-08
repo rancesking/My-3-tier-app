@@ -24,7 +24,7 @@ ecs_task_execution_role_name = "dev_myEcsTaskExecutionRole"
 
 app_image = "xkingrd/ui-front"
 
-back_image = "xkingrd/api-back:v90"
+back_image = "xkingrd/api-back"
 
 lb_port = 80
 
