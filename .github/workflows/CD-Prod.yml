@@ -1,4 +1,4 @@
-name: GitOPS-DEV
+name: GitOPS-Prod
 
 on:
   push:
