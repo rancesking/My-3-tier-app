@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - 'Dev'
+      - 'Stage'
+      - 'Prod'
+      - 'main'
     paths:
       - 'ui/**'
 jobs:
