@@ -1,26 +1,17 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Home from './components/Home'
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+import React, { Fragment } from "react";
+import "./App.css";
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
 
 function App() {
-
-  return(
-   
-    <BrowserRouter>
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
+  return (
+    <Fragment>
+      <div className="container">
+        <TodoInput />
+        <TodoList />
       </div>
-    </BrowserRouter>
-  )
-
+    </Fragment>
+  );
 }
 
 export default App;
