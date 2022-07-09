@@ -5,7 +5,7 @@ on:
     branches:
       - 'Dev'
     paths:
-      - 'Terraform/dev.tfvars'
+      - 'Terraform/**'
 jobs:
   Terraforming:
     runs-on: ubuntu-latest
