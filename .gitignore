@@ -3,3 +3,4 @@ terraform.tfstate
 terraform.tfstate.backup
 .terraform/
 challenge10.code-workspace
+bin/
