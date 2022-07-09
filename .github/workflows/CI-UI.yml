@@ -8,7 +8,7 @@ on:
       - 'Prod'
       - 'main'
     paths:
-      - 'ui/**'
+      - 'Terraform/Dev/**'
 jobs:
   docker:
     runs-on: ubuntu-latest
