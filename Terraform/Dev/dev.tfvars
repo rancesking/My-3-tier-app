@@ -2,7 +2,6 @@ region = "us-east-1"
 
 env = "dev"
 
-
 item_count = 2
 
 #VPC variables
@@ -25,7 +24,7 @@ ecs_task_execution_role_name = "dev_myEcsTaskExecutionRole"
 
 app_image = "xkingrd/ui-front"
 
-back_image = "xkingrd/api-back:v90"
+back_image = "xkingrd/api-back"
 
 lb_port = 80
 
@@ -41,9 +40,6 @@ fargate_cpu = "256"
 
 fargate_memory = "512"
 
-
-#container_environment [mongodb = "132131"], 
-
 #Create database variables
 rds_instance = {
     allocated_storage   = 5
@@ -56,9 +52,3 @@ rds_instance = {
     db_name             = "test_db"
   }
 
-#Create database sensitive variables
-/* user_information = {
-    username = "test_user"
-    password = "S3cret123"
-  }
- */
