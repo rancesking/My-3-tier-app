@@ -3,7 +3,7 @@ name: GitOPS-DEV
 on:
   push:
     branches:
-      - 'Dev'
+      - Dev
     paths:
       - '**.tfvars'
 jobs:
