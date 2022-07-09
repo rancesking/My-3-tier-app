@@ -1,7 +1,8 @@
 region = "us-east-1"
 
 env = "dev"
- 
+
+
 item_count = 2
 
 #VPC variables
