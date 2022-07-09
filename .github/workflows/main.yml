@@ -5,7 +5,7 @@ on:
     branches:
       - 'Dev'
     paths:
-      - './Terraform/Dev/**'
+      - 'Terraform/Dev/**'
 jobs:
   docker:
     runs-on: ubuntu-latest
