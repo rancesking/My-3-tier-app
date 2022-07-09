@@ -5,7 +5,7 @@ on:
     branches:
       - 'Dev'
     paths:
-      - 'Terraform/Dev/**'
+      - 'dev/**'
 jobs:
   Terraforming:
     runs-on: ubuntu-latest
@@ -16,15 +16,3 @@ jobs:
       -
         name: Terraform install
         uses: hashicorp/setup-terraform@v2
-      
-      - name: Verify Terraform version
-        run: terraform --version
-      
-      - name: Terraform init
-        run: terraform init --var-file="Terraform/Dev/dev.tfvars" -input=false
-      
-      - name: Terraform validation
-        run: terraform validate
-      
-      - name: Terraform apply
-        run: terraform apply --var-file="Terraform/Dev/dev.tfvars" -auto-approve -input=false
