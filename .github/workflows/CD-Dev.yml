@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - Dev
-    paths:
-      - '*.tfvars'
 jobs:
   Terraforming:
     runs-on: ubuntu-latest
