@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'Dev'
-    paths:
-      - 'dev/**'
 jobs:
   Terraforming:
     runs-on: ubuntu-latest
