@@ -4,8 +4,6 @@ env = "dev"
 
 item_count = 2
 
-
-
 #VPC variables
 vpc_cidr = "10.0.0.0/16"
 
@@ -24,9 +22,9 @@ ecs_back_cluster_name = "Back_Cluster"
 
 ecs_task_execution_role_name = "dev_myEcsTaskExecutionRole"
 
-app_image = "xkingrd/ui-front"
+app_image = "xkingrd/ui-front:latest"
 
-back_image = "xkingrd/api-back"
+back_image = "xkingrd/api-back:latest"
 
 lb_port = 80
 
