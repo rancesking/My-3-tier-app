@@ -4,6 +4,8 @@ env = "dev"
 
 item_count = 2
 
+
+
 #VPC variables
 vpc_cidr = "10.0.0.0/16"
 
