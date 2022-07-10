@@ -51,3 +51,4 @@ rds_instance = {
     skip_final_snapshot = true
     db_name             = "test_db"
   }
+
