@@ -62,12 +62,12 @@ variable "ecs_task_execution_role_name" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "xkingrd/ui-front:v11"
+  default     = "xkingrd/ui-front:latest"
 }
 
 variable "back_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "xkingrd/api-back:v10"
+  default     = "xkingrd/api-back::latest"
 }
 
 variable "lb_port" {
@@ -103,23 +103,6 @@ variable "fargate_memory" {
   default     = "512"
 }
 
-#variable "container_environment" {
-#  type        = map(any)
-#  description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
-#  default = {["mongodb = 132131", mongodb = ]
-#   mongodb = "172.16.13.255"
-# }
-#}
-
-#variable "container_secrets" {
-# type        = map(any)
-# description = "The environment variables to pass to the container. This is a list of maps. map_environment overrides environment"
-# default = {
-#  mongodb = "172.16.13.255"
-#}
-#}
-
-
 #Create database variables
 variable "rds_instance" {
   type = map(any)
@@ -133,14 +116,4 @@ variable "rds_instance" {
     skip_final_snapshot = true
     db_name             = "test_db"
   }
-}
-
-#Create database sensitive variables
-variable "user_information" {
-  type = map(any)
-  default = {
-    username = "test_user"
-    password = "S3cret123"
-  }
-  sensitive = true
 }
