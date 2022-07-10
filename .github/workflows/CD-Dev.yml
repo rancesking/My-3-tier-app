@@ -2,12 +2,7 @@ name: Gitops-Dev
 
 on:
   workflow_dispatch
-  push:
-    branches:
-      - Dev
-    paths:
-      - '!ui/**'
-      - '!api/**'
+  
 jobs:
   gitops:
     runs-on: ubuntu-latest
@@ -32,6 +27,6 @@ jobs:
       
       - name: Terraform apply
         env:
-          TF_VAR_db_user: ${{secrets.TF_VAR_DB_USER}}
+          TF_VAR_db_user: ${{secrets.TF_VAR_DB_USERR}}
           TF_VAR_db_pass: ${{secrets.TF_VAR_DB_PASS}}
         run: terraform apply --var-file="Terraform/Dev/dev.tfvars" -auto-approve -input=false
