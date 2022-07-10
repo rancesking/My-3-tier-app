@@ -33,3 +33,6 @@ jobs:
           TF_VAR_db_user: ${{secrets.TF_VAR_DB_USER}}
           TF_VAR_db_pass: ${{secrets.TF_VAR_DB_PASS}}
         run: terraform apply --var-file="Terraform/Stage/stage.tfvars" -auto-approve -input=false
+
+      - name: Terraform output
+        run: terraform output
