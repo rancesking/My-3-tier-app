@@ -5,7 +5,7 @@ on:
     branches:
       - 'Stage'
     paths:
-      - 'Stage/**.tfvars'
+      - 'Terraform/Stage/**'
 jobs:
   Terraforming:
     runs-on: ubuntu-latest

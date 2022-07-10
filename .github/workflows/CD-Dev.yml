@@ -1,20 +1,21 @@
-name: GitOPS-DEV
-
-
+name: Gitops-Dev
 
 on:
   push:
     branches:
       - 'Dev'
     paths:
-      - 'Dev/**.tfvars'
+      - 'Terraform/Dev/**'
+  
 jobs:
-  Terraforming:
+  gitops:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Terraform install
+        uses: hashicorp/setup-terraform@v2
       
       - name: Verify Terraform version
         run: terraform --version
@@ -30,8 +31,6 @@ jobs:
       
       - name: Terraform apply
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          TF_VAR_db_user: ${{secrets.TF_VAR_DB_USER}}
+          TF_VAR_db_user: ${{secrets.TF_VAR_DB_USERR}}
           TF_VAR_db_pass: ${{secrets.TF_VAR_DB_PASS}}
         run: terraform apply --var-file="Terraform/Dev/dev.tfvars" -auto-approve -input=false
