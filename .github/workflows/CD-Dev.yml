@@ -1,7 +1,11 @@
 name: Gitops-Dev
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - 'Dev'
+    paths:
+      - 'Terraform/Dev/**'
   
 jobs:
   gitops:
