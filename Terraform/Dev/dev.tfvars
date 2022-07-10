@@ -22,9 +22,9 @@ ecs_back_cluster_name = "Back_Cluster"
 
 ecs_task_execution_role_name = "dev_myEcsTaskExecutionRole"
 
-app_image = "xkingrd/ui-front:latest"
+app_image = "xkingrd/ui-front"
 
-back_image = "xkingrd/api-back:latest"
+back_image = "xkingrd/api-back"
 
 lb_port = 80
 

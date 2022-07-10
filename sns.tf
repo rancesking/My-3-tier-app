@@ -1,6 +1,6 @@
 # SNS topic to send emails with the Alerts
 resource "aws_sns_topic" "alarm" {
-  name              = "ECS Alarms"
+  name              = "ECS_Alarms"
   delivery_policy   = <<EOF
 {
   "http": {
