@@ -9,7 +9,13 @@ output "back_dns_name" {
 }
 
 output "DB_endpoint" {
-  description = "The DNS name of the backend load balancer"
+  description = "The Endpoint IP of the Postgres RDS"
   value       = aws_db_instance.default.endpoint
 }
+
+output "Bastion_endpoint" {
+  description = "The Endpoint IP of the BAstion Hosts"
+  value       = aws_instance.BASTION.public_ip
+}
+
 

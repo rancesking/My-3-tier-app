@@ -14,7 +14,6 @@ resource "aws_ecs_task_definition" "main" {
     name      = "${var.env}-container"
     image     = "${var.app_image}"
     essential = true
-    #environment = var.container_environment
     portMappings = [{
       protocol      = "tcp"
       containerPort = var.lb_port
@@ -28,7 +27,6 @@ resource "aws_ecs_task_definition" "main" {
         awslogs-region        = var.region
       }
     }
-    #secrets = var.container_secrets
   }])
 
   tags = {
@@ -79,7 +77,6 @@ resource "aws_ecs_task_definition" "back" {
     name      = "${var.env}-back-container"
     image     = "${var.back_image}"
     essential = true
-    #environment = var.container_environment
     portMappings = [{
       protocol      = "tcp"
       containerPort = var.app_port
@@ -93,7 +90,6 @@ resource "aws_ecs_task_definition" "back" {
         awslogs-region        = var.region
       }
     }
-    #secrets = var.container_secrets
   }])
 
   tags = {
@@ -125,5 +121,5 @@ resource "aws_ecs_service" "back" {
     container_port   = var.app_port
   }
 
-  depends_on = [aws_alb_listener.http, aws_iam_role_policy_attachment.ecs_task_execution_role]
+  depends_on = [aws_alb_listener.httpback, aws_iam_role_policy_attachment.ecs_task_execution_role]
 }
