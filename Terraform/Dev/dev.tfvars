@@ -52,4 +52,3 @@ rds_instance = {
     db_name             = "test_db"
   }
 
-
