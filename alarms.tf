@@ -22,7 +22,7 @@ resource "aws_cloudwatch_metric_alarm" "front_service_cpu_high" {
 # CloudWatch alarm that triggers the autoscaling down policy
 resource "aws_cloudwatch_metric_alarm" "front_service_memory_high" {
   alarm_name          = "${var.env}-frontend_Memory_utilization_high"
-  comparison_operator = "LessThanOrEqualToThreshold"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
@@ -64,7 +64,7 @@ resource "aws_cloudwatch_metric_alarm" "backend_service_cpu_high" {
 # CloudWatch alarm that triggers the autoscaling down policy
 resource "aws_cloudwatch_metric_alarm" "backend_service_memory_high" {
   alarm_name          = "${var.env}-backend_Memory_utilization_high"
-  comparison_operator = "LessThanOrEqualToThreshold"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "MemoryUtilization"
   namespace           = "AWS/ECS"
