@@ -109,7 +109,7 @@ variable "extra_hosts" {
     hostname  = string
   }))
   description = "A list of hostnames and IP address mappings to append to the /etc/hosts file on the container. This is a list of maps"
-  default = null
+  default     = null
 }
 
 #variable "container_environment" {
@@ -131,7 +131,7 @@ variable "extra_hosts" {
 
 #Create database variables
 variable "rds_instance" {
-  type = map(any)
+  type    = map(any)
   default = null
 }
 
@@ -139,12 +139,12 @@ variable "db_user" {
   description = "Set the user to connect to the db"
   type        = string
   default     = null
-  sensitive = true
+  sensitive   = true
 }
 
 variable "db_pass" {
   description = "Set the user password to connect to the db"
   type        = string
   default     = null
-  sensitive = true
+  sensitive   = true
 }

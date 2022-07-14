@@ -208,10 +208,10 @@ resource "aws_security_group" "database-sg" {
 }
 
 resource "aws_security_group" "only_ssh_bastion" {
-  name        = "only_ssh_bastion"
-  vpc_id      =  aws_vpc.main.id
+  name   = "only_ssh_bastion"
+  vpc_id = aws_vpc.main.id
 
-ingress {
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"

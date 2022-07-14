@@ -14,8 +14,8 @@ resource "aws_cloudwatch_metric_alarm" "front_service_cpu_high" {
     ServiceName = aws_ecs_service.main.name
   }
 
-  alarm_actions = [aws_sns_topic.alarm.arn]
-  ok_actions = [aws_sns_topic.alarm.arn]
+  alarm_actions     = [aws_sns_topic.alarm.arn]
+  ok_actions        = [aws_sns_topic.alarm.arn]
   alarm_description = "Monitor CPU usage of Frontend ECS Instance"
 }
 
@@ -35,8 +35,8 @@ resource "aws_cloudwatch_metric_alarm" "front_service_memory_high" {
     ServiceName = aws_ecs_service.main.name
   }
 
-  alarm_actions = [aws_sns_topic.alarm.arn]
-  ok_actions = [aws_sns_topic.alarm.arn]
+  alarm_actions     = [aws_sns_topic.alarm.arn]
+  ok_actions        = [aws_sns_topic.alarm.arn]
   alarm_description = "Monitor Memory usage of Frontend ECS Instance"
 }
 
@@ -56,8 +56,8 @@ resource "aws_cloudwatch_metric_alarm" "backend_service_cpu_high" {
     ServiceName = aws_ecs_service.back.name
   }
 
-  alarm_actions = [aws_sns_topic.alarm.arn]
-  ok_actions = [aws_sns_topic.alarm.arn]
+  alarm_actions     = [aws_sns_topic.alarm.arn]
+  ok_actions        = [aws_sns_topic.alarm.arn]
   alarm_description = "Monitor CPU usage of Backend ECS Instance"
 }
 
@@ -77,7 +77,7 @@ resource "aws_cloudwatch_metric_alarm" "backend_service_memory_high" {
     ServiceName = aws_ecs_service.back.name
   }
 
-  alarm_actions = [aws_sns_topic.alarm.arn]
-  ok_actions = [aws_sns_topic.alarm.arn]
+  alarm_actions     = [aws_sns_topic.alarm.arn]
+  ok_actions        = [aws_sns_topic.alarm.arn]
   alarm_description = "Monitor Memory usage of Backend ECS Instance"
 }
